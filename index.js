@@ -13,7 +13,7 @@ var bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
 var tradesRoutes = require('./trades.routes');
 var router = express.Router();
 
-db();
+
 
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
@@ -21,6 +21,18 @@ app.use(bodyParserURLEncoded);
 app.use(router);
 tradesRoutes(router);
 
-app.listen(properties.PORT, (req, res) => {
-    console.log(`Server is running on ${properties.PORT} port.`);
-})
+function Initializer(cb){
+    db(()=>{
+        app.listen(properties.PORT, (req, res) => {
+            console.log(`Server is running on ${properties.PORT} port.`);
+            cb(app);
+        });
+    });
+}
+
+if (process.env.NODE_ENV != 'test')
+{
+    Initializer((app)=>{});
+}
+
+module.exports = Initializer;

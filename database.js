@@ -5,12 +5,13 @@ var mongoose = require('mongoose');
 var dbURL = require('./properties').DB;
 
 //export this function and imported by server.js
-module.exports =function(){
+module.exports =function(cb){
 
     mongoose.connect(dbURL);
 
     mongoose.connection.on('connected', function(){
         console.log("Mongoose default connection is open to ", dbURL);
+        cb();
     });
 
     mongoose.connection.on('error', function(err){

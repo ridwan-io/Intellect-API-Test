@@ -1,83 +1,8 @@
 var Trades = require('./trades.dao');
 var moment = require('moment');
 var FORMAT = "yyyy-MM-dd HH:mm:ss";
-/*exports.createHero = function (req, res, next) {
-    var hero = {
-        name: req.body.name,
-        description: req.body.description
-    };
-
-    Heros.create(hero, function(err, hero) {
-        if(err) {
-            res.json({
-                error : err
-            })
-        }
-        res.json({
-            message : "Hero created successfully"
-        })
-    })
-}
-
-exports.getHeros = function(req, res, next) {
-    Heros.get({}, function(err, heros) {
-        if(err) {
-            res.json({
-                error: err
-            })
-        }
-        res.json({
-            heros: heros
-        })
-    })
-}
-
-exports.getHero = function(req, res, next) {
-    Heros.get({name: req.params.name}, function(err, heros) {
-        if(err) {
-            res.json({
-                error: err
-            })
-        }
-        res.json({
-            heros: heros
-        })
-    })
-}
-
-exports.updateHero = function(req, res, next) {
-    var hero = {
-        name: req.body.name,
-        description: req.body.description
-    }
-    Heros.update({_id: req.params.id}, hero, function(err, hero) {
-        if(err) {
-            res.json({
-                error : err
-            })
-        }
-        res.json({
-            message : "Hero updated successfully"
-        })
-    })
-}
-
-exports.removeHero = function(req, res, next) {
-    Heros.delete({_id: req.params.id}, function(err, hero) {
-        if(err) {
-            res.json({
-                error : err
-            })
-        }
-        res.json({
-            message : "Hero deleted successfully"
-        })
-    })
-}
-*/
 
 exports.deleteTrades = function (req, res, next) {
-    console.log("delete called");
     Trades.deleteTrades(function(err) {
         if(err) {
             res.json({
@@ -91,7 +16,6 @@ exports.deleteTrades = function (req, res, next) {
 exports.createTrades = function(req, res, next) {
     
     var data = req.body;
-    console.log("create called", data['timestamp']);
     var theDate = moment(data['timestamp']);
     data['timestamp'] = theDate;
     Trades.createTrades(data, function(err) {
@@ -110,7 +34,6 @@ exports.createTrades = function(req, res, next) {
 }
 
 exports.getTrades = function(req, res, next) {
-    console.log("get trade called");
     Trades.getTrades(function(err, trades) {
         if(err) {
             res.json({
@@ -222,6 +145,5 @@ exports.getTradesByPrice = function(req, res, next) {
         {
             res.sendStatus(404);
         }
-
     });
 }
