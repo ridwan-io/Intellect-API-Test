@@ -5,6 +5,7 @@
 
 
 ### Instructions to run tests.
+- npm install --only=dev
 - npm test
 
 ### Properties.js
