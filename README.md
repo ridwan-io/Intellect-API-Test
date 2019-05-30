@@ -7,6 +7,15 @@
 ### Instructions to run tests.
 - npm test
 
+### Properties.js
+This file contains the port and DB URL (MLAB sandbox account is used.)
+```javascript
+module.exports = {
+    PORT : 4000,
+    DB : 'mongodb://intellectuser:intellectuser123@ds261716.mlab.com:61716/intellect',
+}
+```
+
 # Intellect-API-Test Document
 ### Erasing all trade
 * **URL** 
