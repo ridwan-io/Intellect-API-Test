@@ -1,6 +1,6 @@
-var Trades = require('./trades.controller');
+const Trades = require('./trades.controller');
 
-module.exports = function(router) {
+module.exports = function (router) {
     router.delete('/erase', Trades.deleteTrades);
     router.post('/trades', Trades.createTrades);
     router.get('/trades', Trades.getTrades);
